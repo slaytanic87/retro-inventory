@@ -7,7 +7,7 @@ help:
 	@echo "make build-all        - Build both frontend and backend"
 
 build-frontend:
-	cd frontend && npm run build
+	cd frontend && pnpm run build
 
 build-backend:
 	cargo build

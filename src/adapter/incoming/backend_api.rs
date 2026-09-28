@@ -1,23 +1,23 @@
-use axum::Json;
+use axum::{Json};
 
 use crate::model::{game::Game, platform::GameConsole, common::PriceHistory};
 
-pub fn list_games() -> Vec<Game> {
-    Vec::new()
+pub async fn list_games() -> Json<Vec<Game>> {
+    Json(Vec::new())
 }
 
-pub fn list_consoles() -> Vec<GameConsole> {
-    Vec::new()
+pub async fn list_consoles() -> Json<Vec<GameConsole>> {
+    Json(Vec::new())
 }
 
-pub fn list_price_history() -> Vec<PriceHistory> {
-    Vec::new()
+pub async fn list_price_history() -> Json<Vec<PriceHistory>> {
+    Json(Vec::new())
 }
 
-pub fn create_game(Json(game): Json<Game>) {
-
+pub async fn create_game(Json(game): Json<Game>) -> Json<Game> {
+    Json(game)
 }
 
-pub fn create_console(Json(console): Json<GameConsole>) {
-
+pub async fn create_console(Json(console): Json<GameConsole>) -> Json<GameConsole> {
+    Json(console)
 }

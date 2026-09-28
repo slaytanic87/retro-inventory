@@ -1,5 +1,8 @@
 use duckdb::Connection;
 
+use crate::model::game::Game;
+use crate::model::platform::GameConsole;
+
 pub struct InventoryDatabase {
     connection: Connection
 }
@@ -53,4 +56,8 @@ impl InventoryDatabase {
         )?;
         Ok(())
     }
+
+    pub fn create_game(&self, game: Game) {}
+
+    pub fn create_console(&self, console: GameConsole) {}
 }

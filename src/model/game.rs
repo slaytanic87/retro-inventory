@@ -1,5 +1,7 @@
 use super::common::{Condition, PriceHistory};
+use serde::{Deserialize, Serialize};
 
+#[derive(Debug, Serialize, Deserialize)]
 pub enum Genre {
   Platformer,
   RPG,
@@ -13,7 +15,7 @@ pub enum Genre {
   Strategy,
 }
 
-
+#[derive(Debug, Serialize, Deserialize)]
 pub struct Game {
   id: String,
   name: String,

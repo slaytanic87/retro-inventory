@@ -1293,6 +1293,8 @@ dependencies = [
  "duckdb",
  "mime_guess",
  "rust-embed",
+ "serde",
+ "serde_json",
  "tokio",
  "tracing",
  "tracing-subscriber",

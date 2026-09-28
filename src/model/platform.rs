@@ -1,5 +1,7 @@
 use super::common::{Condition, PricePoint};
+use serde::{Deserialize, Serialize};
 
+#[derive(Debug, Serialize, Deserialize)]
 pub struct GameConsole {
     id: String,
     name: String,
