@@ -26,8 +26,6 @@ const filtered = computed(() => {
 
   return [...rows].sort((a, b) => {
     switch (sort.value) {
-      case 'library-desc':
-        return b.gameValue - a.gameValue
       case 'name':
         return a.console.name.localeCompare(b.console.name)
       case 'year':
@@ -88,7 +86,6 @@ async function remove(id: string) {
         <label class="field__label" for="console-sort">Sort by</label>
         <select id="console-sort" v-model="sort" class="select">
           <option value="value-desc">Hardware value ↓</option>
-          <option value="library-desc">Library value ↓</option>
           <option value="name">Name A–Z</option>
           <option value="year">Release year</option>
         </select>

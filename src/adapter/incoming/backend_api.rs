@@ -1,6 +1,6 @@
-use axum::{Json};
+use axum::Json;
 
-use crate::model::{game::Game, platform::GameConsole, common::PriceHistory};
+use crate::model::{common::PriceHistory, game::Game, platform::GameConsole};
 
 pub async fn list_games() -> Json<Vec<Game>> {
     Json(Vec::new())

@@ -18,8 +18,6 @@ const savingImage = ref(false)
 
 const history = computed(() => store.historyById.get(props.item.id)?.points.map((p) => p.value) ?? [])
 const change = computed(() => store.changeFor(props.item.id, 12))
-const owned = computed(() => store.games.filter((game) => game.consoleId === props.item.id))
-const libraryValue = computed(() => owned.value.reduce((acc, game) => acc + game.marketPrice, 0))
 const profit = computed(() => props.item.marketPrice - props.item.buyPrice)
 
 async function saveImage(imageUrl: string | undefined) {
@@ -79,17 +77,12 @@ async function saveImage(imageUrl: string | undefined) {
 
       <div class="console__chips">
         <span class="chip">{{ item.condition }}</span>
-        <span class="chip">{{ owned.length }} games</span>
       </div>
 
       <dl class="console__stats">
         <div>
           <dt class="eyebrow">Hardware</dt>
           <dd class="pixel">{{ formatMoney(item.marketPrice) }}</dd>
-        </div>
-        <div>
-          <dt class="eyebrow">Library</dt>
-          <dd class="mono">{{ formatMoney(libraryValue) }}</dd>
         </div>
         <div>
           <dt class="eyebrow">Paid</dt>

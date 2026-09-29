@@ -12,8 +12,6 @@ export interface PortfolioPoint {
 
 export interface ConsoleBreakdown {
   console: GameConsole
-  gameCount: number
-  gameValue: number
   hardwareValue: number
   total: number
   spent: number
@@ -104,15 +102,11 @@ export const useLibraryStore = defineStore('library', () => {
   const consoleBreakdown = computed<ConsoleBreakdown[]>(() =>
     consoles.value
       .map((item) => {
-        const owned = games.value.filter((game) => game.consoleId === item.id)
-        const gameValue = round(sum(owned.map((g) => g.marketPrice)))
         return {
           console: item,
-          gameCount: owned.length,
-          gameValue,
           hardwareValue: item.marketPrice,
-          total: round(gameValue + item.marketPrice),
-          spent: round(sum(owned.map((g) => g.buyPrice)) + item.buyPrice),
+          total: round(item.marketPrice),
+          spent: round(item.buyPrice),
         }
       })
       .sort((a, b) => b.total - a.total),
@@ -233,7 +227,6 @@ export const useLibraryStore = defineStore('library', () => {
   async function removeConsole(id: string) {
     await api.deleteConsole(id)
     consoles.value = consoles.value.filter((item) => item.id !== id)
-    games.value = games.value.filter((game) => game.consoleId !== id)
   }
 
   async function resetCollection() {

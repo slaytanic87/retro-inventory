@@ -56,7 +56,7 @@ const consoleBars = computed<BarItem[]>(() =>
     label: entry.console.shortName,
     value: entry.total,
     color: entry.console.color,
-    meta: `${entry.gameCount} games · hardware ${formatMoney(entry.hardwareValue)}`,
+    meta: `hardware ${formatMoney(entry.hardwareValue)}`,
   })),
 )
 

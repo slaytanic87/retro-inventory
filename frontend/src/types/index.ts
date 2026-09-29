@@ -38,8 +38,8 @@ export interface Game {
   marketPrice: number
   /** What the collector actually paid, in EUR */
   buyPrice: number
-  /** Id of the console the game belongs to */
-  consoleId: string
+  /** Name of the console the game belongs to */
+  consolePlatform: string
   /** Optional cover artwork. Falls back to generated pixel art when empty. */
   coverUrl?: string
   condition: Condition

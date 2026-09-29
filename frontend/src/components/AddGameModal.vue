@@ -22,6 +22,7 @@ const form = reactive({
   publisher: '',
   genre: GENRES[0] as Genre,
   consoleId: store.consoles[0]?.id ?? '',
+  consolePlatform: '',
   marketPrice: '' as number | '',
   buyPrice: '' as number | '',
   condition: 'Complete in box' as Condition,
@@ -37,7 +38,7 @@ const errors = computed(() => {
   } else if (Number(form.releaseYear) < 1970 || Number(form.releaseYear) > currentYear + 1) {
     result.releaseYear = `Year must be between 1970 and ${currentYear + 1}.`
   }
-  if (!form.consoleId) result.consoleId = 'Pick a console first.'
+  if (!form.consolePlatform) result.consolePlatform = 'Add a console first.'
   if (form.marketPrice === '' || Number(form.marketPrice) < 0) {
     result.marketPrice = 'Market price must be 0 or more.'
   }
@@ -64,7 +65,7 @@ async function submit() {
       genre: form.genre,
       marketPrice: Number(form.marketPrice),
       buyPrice: Number(form.buyPrice),
-      consoleId: form.consoleId,
+      consolePlatform: form.consolePlatform,
       condition: form.condition,
       coverUrl: form.coverUrl.trim() || undefined,
     })
@@ -149,19 +150,17 @@ async function submit() {
           </div>
 
           <div class="field">
-            <label class="field__label" for="game-console">Console</label>
-            <select
-              id="game-console"
-              v-model="form.consoleId"
-              class="select"
-              :class="{ 'select--invalid': submitted && errors.consoleId }"
-            >
-              <option v-for="item in store.consoles" :key="item.id" :value="item.id">
-                {{ item.name }}
-              </option>
-            </select>
-            <span v-if="submitted && errors.consoleId" class="field__error">
-              {{ errors.consoleId }}
+            <label class="field__label" for="game-console-platform">Console Platform</label>
+            <input
+              id="game-console-platform"
+              v-model="form.consolePlatform"
+              class="input"
+              :class="{ 'input--invalid': submitted && errors.consolePlatform }"
+              placeholder="Super Nintendo Entertainment System"
+              autocomplete="off"
+            />
+            <span v-if="submitted && errors.consolePlatform" class="field__error">
+              {{ errors.consolePlatform }}
             </span>
           </div>
         </div>

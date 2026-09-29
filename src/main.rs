@@ -9,18 +9,30 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     init_logging("INFO".to_string(), "json".to_string());
 
     let app = Router::new()
-    .route("/", get(crate::adapter::incoming::serve_frontend_index))
-    .route("/{*path}", get(crate::adapter::incoming::serve_ui_assets))
-    .route("/api/games", get(crate::adapter::incoming::list_games))
-    .route("/api/consoles", get(crate::adapter::incoming::list_consoles))
-    .route("/api/price-history", get(crate::adapter::incoming::list_price_history))
-    .route("/api/games", axum::routing::post(crate::adapter::incoming::create_game))
-    .route("/api/consoles", axum::routing::post(crate::adapter::incoming::create_console));
+        .route("/", get(crate::adapter::incoming::serve_frontend_index))
+        .route("/{*path}", get(crate::adapter::incoming::serve_ui_assets))
+        .route("/api/games", get(crate::adapter::incoming::list_games))
+        .route(
+            "/api/consoles",
+            get(crate::adapter::incoming::list_consoles),
+        )
+        .route(
+            "/api/price-history",
+            get(crate::adapter::incoming::list_price_history),
+        )
+        .route(
+            "/api/games",
+            axum::routing::post(crate::adapter::incoming::create_game),
+        )
+        .route(
+            "/api/consoles",
+            axum::routing::post(crate::adapter::incoming::create_console),
+        );
 
     let listener = tokio::net::TcpListener::bind("0.0.0.0:8080").await?;
 
     info!("Server running on 0.0.0.0:8080");
-    
+
     axum::serve(listener, app).await?;
     Ok(())
 }

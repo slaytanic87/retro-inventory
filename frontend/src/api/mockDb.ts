@@ -230,7 +230,7 @@ export const games: Game[] = [
     genre: 'Platformer',
     marketPrice: 85,
     buyPrice: 42,
-    consoleId: 'con-nes',
+    consolePlatform: 'Nintendo Entertainment System',
     condition: 'Complete in box',
     addedAt: '2019-04-12',
     priceHistory: [
@@ -252,7 +252,7 @@ export const games: Game[] = [
     genre: 'Action-Adventure',
     marketPrice: 72,
     buyPrice: 55,
-    consoleId: 'con-nes',
+    consolePlatform: 'Nintendo Entertainment System',
     condition: 'Loose',
     addedAt: '2019-08-30',
     priceHistory: [
@@ -274,7 +274,7 @@ export const games: Game[] = [
     genre: 'Platformer',
     marketPrice: 165,
     buyPrice: 88,
-    consoleId: 'con-nes',
+    consolePlatform: 'Nintendo Entertainment System',
     condition: 'Loose',
     addedAt: '2020-01-11',
     priceHistory: [
@@ -296,7 +296,7 @@ export const games: Game[] = [
     genre: 'RPG',
     marketPrice: 420,
     buyPrice: 210,
-    consoleId: 'con-snes',
+    consolePlatform: 'Super Nintendo Entertainment System',
     condition: 'Complete in box',
     addedAt: '2020-03-05',
     priceHistory: [
@@ -318,7 +318,7 @@ export const games: Game[] = [
     genre: 'Action-Adventure',
     marketPrice: 240,
     buyPrice: 130,
-    consoleId: 'con-snes',
+    consolePlatform: 'Super Nintendo Entertainment System',
     condition: 'Complete in box',
     addedAt: '2020-05-23',
     priceHistory: [
@@ -340,7 +340,7 @@ export const games: Game[] = [
     genre: 'RPG',
     marketPrice: 610,
     buyPrice: 380,
-    consoleId: 'con-snes',
+    consolePlatform: 'Super Nintendo Entertainment System',
     condition: 'Complete in box',
     addedAt: '2021-02-14',
     priceHistory: [
@@ -362,7 +362,7 @@ export const games: Game[] = [
     genre: 'Racing',
     marketPrice: 95,
     buyPrice: 70,
-    consoleId: 'con-snes',
+    consolePlatform: 'Super Nintendo Entertainment System',
     condition: 'Loose',
     addedAt: '2021-09-01',
     priceHistory: [
@@ -384,7 +384,7 @@ export const games: Game[] = [
     genre: 'Platformer',
     marketPrice: 38,
     buyPrice: 15,
-    consoleId: 'con-md',
+    consolePlatform: 'Mega Drive',  
     condition: 'Complete in box',
     addedAt: '2020-02-21',
     priceHistory: [
@@ -406,7 +406,7 @@ export const games: Game[] = [
     genre: 'Fighting',
     marketPrice: 115,
     buyPrice: 48,
-    consoleId: 'con-md',
+    consolePlatform: 'Mega Drive',
     condition: 'Complete in box',
     addedAt: '2020-10-06',
     priceHistory: [
@@ -428,7 +428,7 @@ export const games: Game[] = [
     genre: 'Shoot \'em up',
     marketPrice: 155,
     buyPrice: 92,
-    consoleId: 'con-md',
+    consolePlatform: 'Mega Drive',
     condition: 'Loose',
     addedAt: '2022-06-18',
     priceHistory: [
@@ -450,7 +450,7 @@ export const games: Game[] = [
     genre: 'RPG',
     marketPrice: 210,
     buyPrice: 65,
-    consoleId: 'con-gb',
+    consolePlatform: 'Game Boy',
     condition: 'Complete in box',
     addedAt: '2020-07-08',
     priceHistory: [
@@ -472,7 +472,7 @@ export const games: Game[] = [
     genre: 'Puzzle',
     marketPrice: 34,
     buyPrice: 12,
-    consoleId: 'con-gb',
+    consolePlatform: 'Game Boy',
     condition: 'Loose',
     addedAt: '2020-07-08',
     priceHistory: [
@@ -494,7 +494,7 @@ export const games: Game[] = [
     genre: 'Action-Adventure',
     marketPrice: 88,
     buyPrice: 44,
-    consoleId: 'con-gb',
+    consolePlatform: 'Game Boy',
     condition: 'Complete in box',
     addedAt: '2021-04-27',
     priceHistory: [
@@ -516,7 +516,7 @@ export const games: Game[] = [
     genre: 'RPG',
     marketPrice: 120,
     buyPrice: 60,
-    consoleId: 'con-ps1',
+    consolePlatform: 'PlayStation',
     condition: 'Complete in box',
     addedAt: '2021-01-17',
     priceHistory: [
@@ -538,7 +538,7 @@ export const games: Game[] = [
     genre: 'Survival Horror',
     marketPrice: 98,
     buyPrice: 55,
-    consoleId: 'con-ps1',
+    consolePlatform: 'PlayStation',
     condition: 'Complete in box',
     addedAt: '2021-11-30',
     priceHistory: [
@@ -560,7 +560,7 @@ export const games: Game[] = [
     genre: 'Action-Adventure',
     marketPrice: 330,
     buyPrice: 175,
-    consoleId: 'con-ps1',
+    consolePlatform: 'PlayStation',
     condition: 'Complete in box',
     addedAt: '2022-08-09',
     priceHistory: [
@@ -582,7 +582,7 @@ export const games: Game[] = [
     genre: 'Action-Adventure',
     marketPrice: 76,
     buyPrice: 30,
-    consoleId: 'con-n64',
+    consolePlatform: 'Nintendo 64',
     condition: 'Loose',
     addedAt: '2021-06-29',
     priceHistory: [
@@ -604,7 +604,7 @@ export const games: Game[] = [
     genre: 'Action-Adventure',
     marketPrice: 145,
     buyPrice: 68,
-    consoleId: 'con-n64',
+    consolePlatform: 'Nintendo 64',
     condition: 'Complete in box',
     addedAt: '2022-01-22',
     priceHistory: [
@@ -626,7 +626,7 @@ export const games: Game[] = [
     genre: 'Platformer',
     marketPrice: 290,
     buyPrice: 190,
-    consoleId: 'con-n64',
+    consolePlatform: 'Nintendo 64',
     condition: 'Complete in box',
     addedAt: '2023-02-11',
     priceHistory: [
@@ -648,7 +648,7 @@ export const games: Game[] = [
     genre: 'RPG',
     marketPrice: 980,
     buyPrice: 720,
-    consoleId: 'con-saturn',
+    consolePlatform: 'Sega Saturn',
     condition: 'Complete in box',
     addedAt: '2022-03-14',
     priceHistory: [
@@ -670,7 +670,7 @@ export const games: Game[] = [
     genre: 'Shoot \'em up',
     marketPrice: 460,
     buyPrice: 350,
-    consoleId: 'con-saturn',
+    consolePlatform: 'Sega Saturn',
     condition: 'Complete in box',
     addedAt: '2023-07-25',
     priceHistory: [
@@ -692,7 +692,7 @@ export const games: Game[] = [
     genre: 'Action-Adventure',
     marketPrice: 72,
     buyPrice: 58,
-    consoleId: 'con-saturn',
+    consolePlatform: 'Sega Saturn',
     condition: 'Complete in box',
     addedAt: '2024-02-03',
     priceHistory: [
@@ -714,7 +714,7 @@ export const games: Game[] = [
     genre: 'RPG',
     marketPrice: 195,
     buyPrice: 140,
-    consoleId: 'con-dc',
+    consolePlatform: 'Dreamcast',
     condition: 'Complete in box',
     addedAt: '2023-05-02',
     priceHistory: [
@@ -736,7 +736,7 @@ export const games: Game[] = [
     genre: 'Fighting',
     marketPrice: 55,
     buyPrice: 28,
-    consoleId: 'con-dc',
+    consolePlatform: 'Dreamcast', 
     condition: 'Complete in box',
     addedAt: '2023-05-02',
     priceHistory: [
@@ -758,7 +758,7 @@ export const games: Game[] = [
     genre: 'Action-Adventure',
     marketPrice: 110,
     buyPrice: 75,
-    consoleId: 'con-dc',
+    consolePlatform: 'Dreamcast',
     condition: 'Complete in box',
     addedAt: '2024-06-15',
     priceHistory: [
@@ -780,7 +780,7 @@ export const games: Game[] = [
     genre: 'Shoot \'em up',
     marketPrice: 890,
     buyPrice: 640,
-    consoleId: 'con-neogeo',
+    consolePlatform: 'Neo Geo',
     condition: 'Complete in box',
     addedAt: '2024-09-19',
     priceHistory: [
@@ -802,7 +802,7 @@ export const games: Game[] = [
     genre: 'Fighting',
     marketPrice: 520,
     buyPrice: 430,
-    consoleId: 'con-neogeo',
+    consolePlatform: 'Neo Geo',
     condition: 'Loose',
     addedAt: '2025-01-28',
     priceHistory: [
@@ -824,7 +824,7 @@ export const games: Game[] = [
     genre: 'Puzzle',
     marketPrice: 44,
     buyPrice: 26,
-    consoleId: 'con-md',
+    consolePlatform: 'Mega Drive',
     condition: 'Loose',
     addedAt: '2025-04-06',
     priceHistory: [
@@ -846,7 +846,7 @@ export const games: Game[] = [
     genre: 'Strategy',
     marketPrice: 62,
     buyPrice: 35,
-    consoleId: 'con-snes',
+    consolePlatform: 'Super Nintendo Entertainment System',
     condition: 'Complete in box',
     addedAt: '2025-06-12',
     priceHistory: [
@@ -868,7 +868,7 @@ export const games: Game[] = [
     genre: 'Racing',
     marketPrice: 48,
     buyPrice: 22,
-    consoleId: 'con-snes',
+    consolePlatform: 'Super Nintendo Entertainment System',
     condition: 'Loose',
     addedAt: '2025-07-30',
     priceHistory: [
