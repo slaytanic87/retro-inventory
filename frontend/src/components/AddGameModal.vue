@@ -38,7 +38,7 @@ const errors = computed(() => {
   } else if (Number(form.releaseYear) < 1970 || Number(form.releaseYear) > currentYear + 1) {
     result.releaseYear = `Year must be between 1970 and ${currentYear + 1}.`
   }
-  if (!form.consolePlatform) result.consolePlatform = 'Add a console first.'
+  if (!form.consolePlatform.trim()) result.consolePlatform = 'Add a console platform which this game belongs to.'
   if (form.marketPrice === '' || Number(form.marketPrice) < 0) {
     result.marketPrice = 'Market price must be 0 or more.'
   }
