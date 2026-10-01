@@ -25,8 +25,9 @@ const filtered = computed(() => {
       !term ||
       game.name.toLowerCase().includes(term) ||
       game.publisher.toLowerCase().includes(term)
+    const matchesConsole = consoleFilter.value === 'all' || game.consolePlatform === consoleFilter.value
     const matchesGenre = genreFilter.value === 'all' || game.genre === genreFilter.value
-    return matchesTerm && matchesGenre
+    return matchesTerm && matchesConsole && matchesGenre
   })
 
   return [...result].sort((a, b) => {
