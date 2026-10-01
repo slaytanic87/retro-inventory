@@ -230,7 +230,7 @@ export const games: Game[] = [
     genre: 'Platformer',
     marketPrice: 85,
     buyPrice: 42,
-    consolePlatform: 'Nintendo Entertainment System',
+    consolePlatform: 'NES',
     condition: 'Complete in box',
     addedAt: '2019-04-12',
     priceHistory: [
@@ -252,7 +252,7 @@ export const games: Game[] = [
     genre: 'Action-Adventure',
     marketPrice: 72,
     buyPrice: 55,
-    consolePlatform: 'Nintendo Entertainment System',
+    consolePlatform: 'NES',
     condition: 'Loose',
     addedAt: '2019-08-30',
     priceHistory: [
@@ -274,7 +274,7 @@ export const games: Game[] = [
     genre: 'Platformer',
     marketPrice: 165,
     buyPrice: 88,
-    consolePlatform: 'Nintendo Entertainment System',
+    consolePlatform: 'NES',
     condition: 'Loose',
     addedAt: '2020-01-11',
     priceHistory: [
@@ -296,7 +296,7 @@ export const games: Game[] = [
     genre: 'RPG',
     marketPrice: 420,
     buyPrice: 210,
-    consolePlatform: 'Super Nintendo Entertainment System',
+    consolePlatform: 'SNES',
     condition: 'Complete in box',
     addedAt: '2020-03-05',
     priceHistory: [
@@ -318,7 +318,7 @@ export const games: Game[] = [
     genre: 'Action-Adventure',
     marketPrice: 240,
     buyPrice: 130,
-    consolePlatform: 'Super Nintendo Entertainment System',
+    consolePlatform: 'SNES',
     condition: 'Complete in box',
     addedAt: '2020-05-23',
     priceHistory: [
@@ -340,7 +340,7 @@ export const games: Game[] = [
     genre: 'RPG',
     marketPrice: 610,
     buyPrice: 380,
-    consolePlatform: 'Super Nintendo Entertainment System',
+    consolePlatform: 'SNES',
     condition: 'Complete in box',
     addedAt: '2021-02-14',
     priceHistory: [
@@ -362,7 +362,7 @@ export const games: Game[] = [
     genre: 'Racing',
     marketPrice: 95,
     buyPrice: 70,
-    consolePlatform: 'Super Nintendo Entertainment System',
+    consolePlatform: 'SNES',
     condition: 'Loose',
     addedAt: '2021-09-01',
     priceHistory: [
@@ -846,7 +846,7 @@ export const games: Game[] = [
     genre: 'Strategy',
     marketPrice: 62,
     buyPrice: 35,
-    consolePlatform: 'Super Nintendo Entertainment System',
+    consolePlatform: 'SNES',
     condition: 'Complete in box',
     addedAt: '2025-06-12',
     priceHistory: [
@@ -868,7 +868,7 @@ export const games: Game[] = [
     genre: 'Racing',
     marketPrice: 48,
     buyPrice: 22,
-    consolePlatform: 'Super Nintendo Entertainment System',
+    consolePlatform: 'SNES',
     condition: 'Loose',
     addedAt: '2025-07-30',
     priceHistory: [

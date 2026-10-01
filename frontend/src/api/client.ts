@@ -177,7 +177,6 @@ export const api = {
   /** DELETE /api/consoles/:id */
   deleteConsole(id: string): Promise<{ id: string }> {
     db.consoles = db.consoles.filter((item) => item.id !== id)
-    db.games = db.games.filter((game) => game.consoleId !== id)
     persist()
     return delay({ id })
   },

@@ -5,7 +5,6 @@ import { COVER_GRID, generateCover } from '../composables/useCoverArt'
 const props = defineProps<{
   title: string
   coverUrl?: string
-  accent?: string
 }>()
 
 const art = computed(() => generateCover(props.title))
@@ -14,7 +13,7 @@ const viewBox = `0 0 ${COVER_GRID.width * cell} ${COVER_GRID.height * cell}`
 </script>
 
 <template>
-  <div class="cover" :style="{ '--cover-bg': art.background, '--cover-accent': accent || art.accent }">
+  <div class="cover" :style="{ '--cover-bg': art.background, '--cover-accent': art.accent }">
     <img v-if="coverUrl" class="cover__img" :src="coverUrl" :alt="`${title} cover`" loading="lazy" />
     <template v-else>
       <svg

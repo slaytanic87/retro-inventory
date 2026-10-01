@@ -3,6 +3,7 @@ import { computed, ref } from 'vue'
 import GameCover from './GameCover.vue'
 import ImageDropZone from './ImageDropZone.vue'
 import SparkLine from './SparkLine.vue'
+import { generateCover } from '../composables/useCoverArt'
 import { COVER_TARGET } from '../composables/useImageUpload'
 import { formatMoney, formatPercent, formatSignedMoney, trendClass } from '../composables/useFormat'
 import { useToasts } from '../composables/useToasts'
@@ -16,8 +17,9 @@ const store = useLibraryStore()
 const { push } = useToasts()
 
 const savingCover = ref(false)
+const art = computed(() => generateCover(props.game.name))
 
-const platform = computed(() => store.consoleById.get(props.game.consoleId))
+const platform = computed(() => props.game.consolePlatform)
 const history = computed(() => store.historyById.get(props.game.id)?.points.map((p) => p.value) ?? [])
 const change = computed(() => store.changeFor(props.game.id, 12))
 const profit = computed(() => props.game.marketPrice - props.game.buyPrice)
@@ -39,7 +41,7 @@ async function saveCover(coverUrl: string | undefined) {
 </script>
 
 <template>
-  <article class="card panel" :style="{ '--platform': platform?.color ?? 'var(--violet)' }">
+  <article class="card panel" :style="{ '--platform': art.accent ?? 'var(--violet)' }">
     <div class="card__art">
       <ImageDropZone
         :name="game.name"
@@ -51,9 +53,9 @@ async function saveCover(coverUrl: string | undefined) {
         @cleared="saveCover(undefined)"
         @failed="push($event, 'error')"
       >
-        <GameCover :title="game.name" :cover-url="game.coverUrl" :accent="platform?.color" />
+        <GameCover :title="game.name" :cover-url="game.coverUrl" />
       </ImageDropZone>
-      <span class="card__platform pixel">{{ platform?.shortName ?? 'Unknown' }}</span>
+      <span class="card__platform pixel">{{ platform ?? 'Unknown' }}</span>
     </div>
 
     <div class="card__body">

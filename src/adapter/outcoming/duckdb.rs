@@ -13,12 +13,29 @@ impl InventoryDatabase {
         Self { connection }
     }
 
+    pub fn drop_database(&self) -> Result<(), Box<dyn std::error::Error>> {
+        self.connection.execute_batch(
+            r#"
+            DROP TABLE IF EXISTS games;
+            DROP TABLE IF EXISTS consoles;
+            DROP TABLE IF EXISTS price_point;
+            DROP TABLE IF EXISTS image;
+            DROP SEQUENCE IF EXISTS game_id_seq;
+            DROP SEQUENCE IF EXISTS console_id_seq;
+            DROP SEQUENCE IF EXISTS price_point_id_seq;
+            DROP SEQUENCE IF EXISTS image_id_seq;
+            "#,
+        )?;
+        Ok(())
+    }
+
     pub fn create_schemas(&self) -> Result<(), Box<dyn std::error::Error>> {
         self.connection.execute_batch(
             r#"
             CREATE SEQUENCE IF NOT EXISTS game_id_seq;
             CREATE SEQUENCE IF NOT EXISTS console_id_seq;
             CREATE SEQUENCE IF NOT EXISTS price_point_id_seq;
+            CREATE SEQUENCE IF NOT EXISTS image_id_seq;
             CREATE TABLE IF NOT EXISTS games (
                 id INTEGER PRIMARY KEY DEFAULT nextval('game_id_seq'),
                 title TEXT NOT NULL,
@@ -29,10 +46,12 @@ impl InventoryDatabase {
                 console_platform TEXT NOT NULL,
                 cover_url TEXT,
                 condition TEXT,
-                added_at TIMESTAMP NOT NULL,
+                added_at DATE NOT NULL DEFAULT CURRENT_DATE,
                 release_year INTEGER,
                 entity_id INTEGER NOT NULL,
-                FOREIGN KEY(id) REFERENCES price_point(entity_id)
+                FOREIGN KEY(id) REFERENCES price_point(id),
+                image_id INTEGER,
+                FOREIGN KEY(image_id) REFERENCES image(id)
             );
             CREATE TABLE IF NOT EXISTS consoles (
                 id INTEGER PRIMARY KEY DEFAULT nextval('console_id_seq'),
@@ -45,15 +64,23 @@ impl InventoryDatabase {
                 condition TEXT,
                 color TEXT NOT NULL,
                 image_url TEXT,
-                added_at TIMESTAMP NOT NULL,
+                added_at DATE NOT NULL DEFAULT CURRENT_DATE,
                 entity_id INTEGER NOT NULL,
-                FOREIGN KEY(entity_id) REFERENCES price_point(entity_id)
+                FOREIGN KEY(entity_id) REFERENCES price_point(id),
+                image_id INTEGER,
+                FOREIGN KEY(image_id) REFERENCES image(id)
             );
             CREATE TABLE IF NOT EXISTS price_point (
                 id INTEGER PRIMARY KEY DEFAULT nextval('price_point_id_seq'),
-                date TIMESTAMP NOT NULL,
+                date DATE NOT NULL DEFAULT CURRENT_DATE,
                 value NUMERIC NOT NULL
-            );"#,
+            );
+            CREATE TABLE IF NOT EXISTS image (
+                id INTEGER PRIMARY KEY DEFAULT nextval('image_id_seq'),
+                metadata TEXT,
+                data BYTEA NOT NULL
+            );
+            "#,
         )?;
         Ok(())
     }
