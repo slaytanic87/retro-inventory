@@ -74,7 +74,7 @@ export interface PricePoint {
 
 export interface PriceHistory {
   entityId: string
-  entityType: 'game' | 'console'
+  entityType: 'game' | 'console' | 'accessory'
   points: PricePoint[]
 }
 

@@ -2,6 +2,7 @@ use super::common::{Condition, PricePoint};
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
 pub struct GameConsole {
     pub id: String,
     pub name: String,

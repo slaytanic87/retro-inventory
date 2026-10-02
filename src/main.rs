@@ -1,4 +1,4 @@
-use axum::{Router, routing::get};
+use axum::{Router, routing::get, routing::post, routing::patch, routing::delete};
 use retro_inventory::adapter;
 use tracing::info;
 
@@ -22,11 +22,27 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         )
         .route(
             "/api/games",
-            axum::routing::post(crate::adapter::incoming::create_game),
+            post(crate::adapter::incoming::create_game),
         )
         .route(
             "/api/consoles",
-            axum::routing::post(crate::adapter::incoming::create_console),
+            post(crate::adapter::incoming::create_console),
+        )
+        .route(
+            "/api/games/{game_id}/cover",
+            patch(crate::adapter::incoming::update_game_cover),
+        )
+        .route(
+            "/api/consoles/{console_id}/image",
+            patch(crate::adapter::incoming::update_console_image),
+        )
+        .route(
+            "/api/games/{game_id}",
+            delete(crate::adapter::incoming::delete_game),
+        )
+        .route(
+            "/api/consoles/{console_id}",
+            delete(crate::adapter::incoming::delete_console),
         );
 
     let listener = tokio::net::TcpListener::bind("0.0.0.0:8080").await?;

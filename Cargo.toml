@@ -7,7 +7,7 @@ readme = "README.md"
 [dependencies]
 axum = { version = "0.8.9", features = ["macros", "ws"] }
 dotenvy = "0.15.7"
-duckdb = { version = "1.10505.0", features = ["bundled"] }
+duckdb = { version = "1.10506.0", features = ["bundled"] }
 mime_guess = "2.0.5"
 rust-embed = "8.12.0"
 serde = { version = "1.0.229", features = ["derive"] }

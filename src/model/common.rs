@@ -4,6 +4,7 @@ use serde::{Deserialize, Serialize};
 pub enum EntityType {
     Game,
     Console,
+    Accessory,
 }
 
 #[derive(Debug, Serialize, Deserialize)]

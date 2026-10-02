@@ -18,6 +18,7 @@ pub enum Genre {
 }
 
 #[derive(Debug, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
 pub struct Game {
     pub id: String,
     pub name: String,
