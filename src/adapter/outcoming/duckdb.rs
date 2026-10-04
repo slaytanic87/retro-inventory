@@ -118,22 +118,10 @@ impl InventoryDatabase {
             r#"DELETE FROM price_point WHERE entity_id = ?"#,
             params![entity_id],
         )?;
-        self.connection.execute(
-            r#"DELETE FROM images WHERE id = ?"#,
-            params![image_id],
-        )?;
-        self.connection.execute(
-            r#"DELETE FROM games WHERE id = ?"#,
-            params![game_id],
-        )?;
-        Ok(())
-    }
-
-    pub fn remove_console(&self, console_id: u64) -> Result<(), Box<dyn std::error::Error>> {
-        self.connection.execute(
-            r#"DELETE FROM consoles WHERE id = ?"#,
-            params![console_id],
-        )?;
+        self.connection
+            .execute(r#"DELETE FROM images WHERE id = ?"#, params![image_id])?;
+        self.connection
+            .execute(r#"DELETE FROM games WHERE id = ?"#, params![game_id])?;
         Ok(())
     }
 
@@ -153,6 +141,28 @@ impl InventoryDatabase {
                 console.added_at,
             ],
         )?;
+        Ok(())
+    }
+
+    pub fn remove_console(&self, console_id: u64) -> Result<(), Box<dyn std::error::Error>> {
+        let entity_id: u64 = self.connection.query_row(
+            "SELECT entity_id FROM consoles WHERE id = ?",
+            params![console_id],
+            |row| row.get::<_, u64>(0),
+        )?;
+        let image_id: u64 = self.connection.query_row(
+            "SELECT image_id FROM consoles WHERE id = ?",
+            params![console_id],
+            |row| row.get::<_, u64>(0),
+        )?;
+        self.connection.execute(
+            r#"DELETE FROM price_point WHERE entity_id = ?"#,
+            params![entity_id],
+        )?;
+        self.connection
+            .execute(r#"DELETE FROM images WHERE id = ?"#, params![image_id])?;
+        self.connection
+            .execute(r#"DELETE FROM consoles WHERE id = ?"#, params![console_id])?;
         Ok(())
     }
 }

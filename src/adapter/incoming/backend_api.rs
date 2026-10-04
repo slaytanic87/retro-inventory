@@ -79,12 +79,6 @@ pub async fn update_console_image(
     })
 }
 
-pub async fn delete_game(
-    Path(game_id): Path<u64>
-) {
-}
+pub async fn delete_game(Path(game_id): Path<u64>) {}
 
-pub async fn delete_console(
-    Path(console_id): Path<u64>
-) {
-}
+pub async fn delete_console(Path(console_id): Path<u64>) {}

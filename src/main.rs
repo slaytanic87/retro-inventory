@@ -1,4 +1,4 @@
-use axum::{Router, routing::get, routing::post, routing::patch, routing::delete};
+use axum::{Router, routing::delete, routing::get, routing::patch, routing::post};
 use retro_inventory::adapter;
 use tracing::info;
 
@@ -20,10 +20,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
             "/api/price-history",
             get(crate::adapter::incoming::list_price_history),
         )
-        .route(
-            "/api/games",
-            post(crate::adapter::incoming::create_game),
-        )
+        .route("/api/games", post(crate::adapter::incoming::create_game))
         .route(
             "/api/consoles",
             post(crate::adapter::incoming::create_console),
