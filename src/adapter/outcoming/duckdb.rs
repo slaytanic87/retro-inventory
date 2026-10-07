@@ -35,7 +35,6 @@ impl InventoryDatabase {
             CREATE SEQUENCE IF NOT EXISTS game_id_seq;
             CREATE SEQUENCE IF NOT EXISTS console_id_seq;
             CREATE SEQUENCE IF NOT EXISTS price_point_id_seq;
-            CREATE SEQUENCE IF NOT EXISTS image_id_seq;
             CREATE TABLE IF NOT EXISTS games (
                 id INTEGER PRIMARY KEY DEFAULT nextval('game_id_seq'),
                 title TEXT NOT NULL,
@@ -76,9 +75,8 @@ impl InventoryDatabase {
                 value NUMERIC NOT NULL
             );
             CREATE TABLE IF NOT EXISTS images (
-                id INTEGER PRIMARY KEY DEFAULT nextval('image_id_seq'),
-                metadata TEXT,
-                data BYTEA NOT NULL
+                id INTEGER PRIMARY KEY NOT NULL,
+                image_data_url TEXT NOT NULL
             );
             "#,
         )?;
@@ -118,10 +116,40 @@ impl InventoryDatabase {
             r#"DELETE FROM price_point WHERE entity_id = ?"#,
             params![entity_id],
         )?;
-        self.connection
-            .execute(r#"DELETE FROM images WHERE id = ?"#, params![image_id])?;
-        self.connection
-            .execute(r#"DELETE FROM games WHERE id = ?"#, params![game_id])?;
+        self.connection.execute(
+            r#"DELETE FROM images WHERE id = ?"#,
+            params![image_id],
+        )?;
+        self.connection.execute(
+            r#"DELETE FROM games WHERE id = ?"#,
+            params![game_id],
+        )?;
+        Ok(())
+    }
+
+    pub fn remove_console(&self, console_id: u64) -> Result<(), Box<dyn std::error::Error>> {
+        let entity_id: u64 = self.connection.query_row(
+            "SELECT entity_id FROM consoles WHERE id = ?",
+            params![console_id],
+            |row| row.get::<_, u64>(0),
+        )?;
+        let image_id: u64 = self.connection.query_row(
+            "SELECT image_id FROM consoles WHERE id = ?",
+            params![console_id],
+            |row| row.get::<_, u64>(0),
+        )?;
+        self.connection.execute(
+            r#"DELETE FROM price_point WHERE entity_id = ?"#,
+            params![entity_id],
+        )?;
+        self.connection.execute(
+            r#"DELETE FROM images WHERE id = ?"#,
+            params![image_id],
+        )?;
+        self.connection.execute(
+            r#"DELETE FROM consoles WHERE id = ?"#,
+            params![console_id],
+        )?;
         Ok(())
     }
 
@@ -144,25 +172,25 @@ impl InventoryDatabase {
         Ok(())
     }
 
-    pub fn remove_console(&self, console_id: u64) -> Result<(), Box<dyn std::error::Error>> {
-        let entity_id: u64 = self.connection.query_row(
-            "SELECT entity_id FROM consoles WHERE id = ?",
-            params![console_id],
+    pub fn add_image(&self, image_data_url: &str) -> Result<u64, Box<dyn std::error::Error>> {
+        let last_image_result = self.connection.query_row(
+            "SELECT id FROM images ORDER BY id DESC LIMIT 1",
+            params![],
             |row| row.get::<_, u64>(0),
-        )?;
-        let image_id: u64 = self.connection.query_row(
-            "SELECT image_id FROM consoles WHERE id = ?",
-            params![console_id],
-            |row| row.get::<_, u64>(0),
-        )?;
+        );
+        let last_image_id = if let Err(e) = last_image_result {
+            match e {
+                duckdb::Error::QueryReturnedNoRows => 0,
+                _ => return Err(Box::new(e)),
+            }
+        } else {
+            last_image_result.unwrap()
+        };
+        let image_id = if last_image_id > 0 { last_image_id + 1 } else { 0 };
         self.connection.execute(
-            r#"DELETE FROM price_point WHERE entity_id = ?"#,
-            params![entity_id],
+            r#"INSERT INTO images (id, image_data_url) VALUES (?, ?)"#,
+            params![image_id, image_data_url],
         )?;
-        self.connection
-            .execute(r#"DELETE FROM images WHERE id = ?"#, params![image_id])?;
-        self.connection
-            .execute(r#"DELETE FROM consoles WHERE id = ?"#, params![console_id])?;
-        Ok(())
+        Ok(image_id)
     }
 }
